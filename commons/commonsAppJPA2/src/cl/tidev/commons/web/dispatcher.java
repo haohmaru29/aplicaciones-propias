@@ -120,7 +120,7 @@ public class dispatcher extends HttpServlet {
 		} catch (InstantiationException e) {
 			Logger.getLogger( dispatcher.class).error("Dispatcher Error -> ", e);
 			jsonView.prepareMessageResponse(false, e.getMessage());
-			jsonView.render(response);
+			jsonView.render(response); 
 		} catch(Exception e) {
 			Logger.getLogger( dispatcher.class).error("Dispatcher Error -> ", e);
 			jsonView.prepareMessageResponse(false, e.getMessage());
