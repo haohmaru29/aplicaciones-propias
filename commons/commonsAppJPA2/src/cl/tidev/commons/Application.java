@@ -9,7 +9,7 @@ import cl.tidev.commons.helper.ClassUtils;
 import cl.tidev.commons.helper.PropertiesUtils;
 
 public class Application {
-
+ 
 	private static final String repositoryPackage = "module.package.repository";
 	private static final String webPackage = "module.package.web";
 	private static final String appPackage = "module.package.application";
