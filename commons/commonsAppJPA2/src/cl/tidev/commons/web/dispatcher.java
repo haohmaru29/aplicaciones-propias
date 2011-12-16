@@ -88,7 +88,7 @@ public class dispatcher extends HttpServlet {
         JsonView jsonView = new JsonView();
 
         if (globalController.contains(className)) {
-            webPath = "cl.ejedigital.commons.web.";
+            webPath = "cl.tidev.commons.web.";
         }
 
         try {

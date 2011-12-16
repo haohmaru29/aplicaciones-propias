@@ -32,7 +32,7 @@ public class JpaConnection {
     }
 
     public static JpaConnection factory() {
-        String persistenceUnit = resource.getString("module.jpa.pu");
+        String persistenceUnit = resource.getString("module.jpa.pu").trim();
 
         if (!instances.containsKey(persistenceUnit)) {
             instances.put(persistenceUnit, new JpaConnection(persistenceUnit));

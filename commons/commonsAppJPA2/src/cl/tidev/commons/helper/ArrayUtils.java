@@ -51,6 +51,7 @@ public final class ArrayUtils {
             } else {
                 buffer.append(ob.toString());
             }
+            cont++;
         }
         return buffer.toString();
     }
