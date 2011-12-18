@@ -1,0 +1,26 @@
+.tables {
+    height: 100%;
+    width: 100%;
+    border: 1px solid #999;
+}
+td {
+    border: 1px solid #ffffff;
+    font-family: arial;
+    height: 16px;
+}
+.tdEnc{
+    background: #cccccc;
+    border-color: #ffffff; 
+    height: 16px;
+    padding-right: 2px;
+    text-align: right;
+    font-size: 12px;
+    width: 120px;
+    font: bold;
+    font-style: italic;
+}
+.tdBody{
+    height: 16px;
+    padding-left: 10px;
+    font-style: italic;
+}
