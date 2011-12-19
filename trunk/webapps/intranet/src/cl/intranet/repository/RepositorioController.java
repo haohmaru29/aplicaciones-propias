@@ -20,7 +20,7 @@ public class RepositorioController extends AbstractJpaController<Repositorio> {
 	
 	public List<?> findByIdUser(Long idUser) {
 		EntityManager em = jpaConnection.getEntityManager();
-		Query q = em.createNativeQuery("SELECT r FROM Repositorio r WHERE r.idrepositorio in (" + 1 + ")");
+		Query q = em.createNativeQuery("SELECT * from REPOSITORIOS WHERE idrepositorio in (" + 1 + ")", Repositorio.class);
 		
 		return q.getResultList();
 	}

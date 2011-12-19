@@ -41,22 +41,23 @@ Ext.onReady(function(){
                         iconAlign: 'left'
                     },
                     items: [{
-                        text: 'User<br/>manager',
-                        iconCls: 'edit',
-                        width: 90
-                    },{
-                        iconCls: 'add',
-                        width: 'auto',
-                        tooltip: 'Add user',
-                        width: 40
-                    },{
                         colspan: 2,
-                        text: 'Import',
+                        text: 'Usuarios',
                         scale: 'small',
                         width: 130
                     },{
                         colspan: 2,
-                        text: 'Who is online?',
+                        text: 'Repositorios',
+                        scale: 'small',
+                        width: 130
+                    },{
+                        colspan: 2,
+                        text: 'Empresas',
+                        scale: 'small',
+                        width: 130
+                    },{
+                        colspan: 2,
+                        text: 'Proyectos',
                         scale: 'small',
                         width: 130
                     }]
