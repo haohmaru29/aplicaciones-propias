@@ -30,7 +30,7 @@ Ext.onReady(function() {
         displayField: 'nombre',
         valueField: 'idusuario',
         multiSelect: false,
-        renderTo: 'cb_usuarios',
+        //renderTo: 'cb_usuarios',
         //allowBlank:true,
         editable: false,
         emptyText:'Seleccione Usuario...',

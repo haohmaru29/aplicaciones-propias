@@ -20,7 +20,7 @@ Ext.onReady(function() {
           remoteSort: false,
           proxy: {
               type: 'ajax',
-              url: 'repositorio/my',
+              url: 'repositorio/myRepo',
               method: 'post',
               timeout: 550000,
               reader: {
