@@ -11,7 +11,7 @@ Ext.onReady(function() {
         //pageSize: 15,
         proxy: {
             type: 'ajax',
-            url: 'usuario/all',
+            url: 'user/all',
             method: 'post',
             timeout: 550000,
             reader: {

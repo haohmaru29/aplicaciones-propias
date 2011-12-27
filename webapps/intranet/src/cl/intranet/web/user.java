@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class usuario {
+public class user {
     
     private UsuarioManager usuarioManager = 
             (UsuarioManager) ServiceManager.factory("UsuarioManager");
@@ -21,7 +21,7 @@ public class usuario {
             session.setAttribute("usuario", usuario);
             jsonView.prepareResponse(true, "Usuario existe");
         } else {
-            jsonView.prepareResponse(true, "Usuario No Existe");
+            jsonView.prepareResponse(false, "Usuario No Existe");
         }
         
         jsonView.render(response);

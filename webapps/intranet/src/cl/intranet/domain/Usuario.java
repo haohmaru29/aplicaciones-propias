@@ -11,9 +11,6 @@ import java.util.List;
  */
 @Entity
 @Table(name="USUARIOS")
-@NamedQueries({
-	@NamedQuery(name="Usuario.login",query="SELECT u FROM Usuario u WHERE u.nombre=:nombre AND u.clave=:clave")
-})
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -50,6 +47,10 @@ public class Usuario implements Serializable {
 	//bi-directional many-to-one association to UsuarioRepositorio
 	@OneToMany(mappedBy="usuario")
 	private List<UsuarioRepositorio> usuarioRepositorios;
+
+	//bi-directional many-to-one association to UsuarioServidorCorreo
+	@OneToMany(mappedBy="usuario")
+	private List<UsuarioServidorCorreo> usuarioServidorCorreos;
 
     public Usuario() {
     }
@@ -132,6 +133,14 @@ public class Usuario implements Serializable {
 
 	public void setUsuarioRepositorios(List<UsuarioRepositorio> usuarioRepositorios) {
 		this.usuarioRepositorios = usuarioRepositorios;
+	}
+	
+	public List<UsuarioServidorCorreo> getUsuarioServidorCorreos() {
+		return this.usuarioServidorCorreos;
+	}
+
+	public void setUsuarioServidorCorreos(List<UsuarioServidorCorreo> usuarioServidorCorreos) {
+		this.usuarioServidorCorreos = usuarioServidorCorreos;
 	}
 	
 }

@@ -1,7 +1,7 @@
 Ext.onReady(function(){
    
     var loginForm = Ext.create('Ext.form.Panel',{
-        url: 'usuario/login',
+        url: 'user/login',
         title: ' Ingreso Intranet ',
         renderTo: 'loginDiv',
         frame: true,
@@ -56,7 +56,7 @@ function fnLoginForm(theForm) {
             }
         });
     } else {
-        System.MessageBox.info("<b>Ingrese todos los campos requeridos.</b>")
+        System.MessageBox.info("<b>Ingrese todos los campos requeridos.</b>");
     }
     
 } 
