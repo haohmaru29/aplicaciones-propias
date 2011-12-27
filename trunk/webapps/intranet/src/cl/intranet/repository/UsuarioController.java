@@ -16,7 +16,7 @@ public class UsuarioController extends AbstractJpaController<Usuario> {
 
     public Usuario login(String correo, String pass) {
         Usuario usuario=null;
-        Query q = jpaConnection.getEntityManager().createNamedQuery("Usuario.login");
+        Query q = jpaConnection.getEntityManager().createQuery("SELECT u from Usuario u where u.nombre=:nombre and u.clave=:clave");
         q.setParameter("nombre", correo);
         q.setParameter("clave", pass);
         try {

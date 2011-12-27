@@ -33,7 +33,7 @@ Ext.onReady(function() {
         
     });
     
-    var perfil =new Ext.ux.Element('usuario/session', function(result, request){
+    var perfil =new Ext.ux.Element('user/session', function(result, request){
         var o =Ext.decode(result.responseText);
         if( o.success ) {
             document.getElementById('session_nombreUsuario').innerHTML = o.data.nombre;

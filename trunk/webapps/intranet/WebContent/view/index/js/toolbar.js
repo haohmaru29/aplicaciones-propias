@@ -18,12 +18,18 @@ Ext.onReady(function(){
                 Usuario.win.show();
             }
         }, {
-            text: 'Repositorios',
+            text: 'Mis Repositorios',
             iconCls: 'icon-app',
             tooltip: 'Ver mis repositorios',
             handler: function() {
-                Repositorio.win.show();
-                Repositorio.store.load();
+                
+            }
+        },{
+            text: 'Calendario',
+            iconCls: 'icon-app',
+            tooltip: 'Ver calendario',
+            handler: function() {
+                
             }
         },'|', {
         	text: 'Administrar',

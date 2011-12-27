@@ -2,5 +2,5 @@
 
 <!-- CSS Various -->
 <link type="text/css" href="library/system/css/icons.css" rel="stylesheet" />
-
+<link rel="stylesheet" type="text/css"  href="public/css/columns.css" ></link>
 <link rel="stylesheet" type="text/css"  href="public/css/tables.css" ></link>

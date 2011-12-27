@@ -5,6 +5,7 @@
 	<persistence-unit name="intranetPU" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>cl.intranet.domain.Cargo</class>
+		<class>cl.intranet.domain.Correo</class>
 		<class>cl.intranet.domain.DatosEmpresaServicio</class>
 		<class>cl.intranet.domain.Empresa</class>
 		<class>cl.intranet.domain.EmpresaServicio</class>
@@ -13,11 +14,13 @@
 		<class>cl.intranet.domain.Proyecto</class>
 		<class>cl.intranet.domain.ProyectoRepositorio</class>
 		<class>cl.intranet.domain.Repositorio</class>
+		<class>cl.intranet.domain.ServidorCorreo</class>
 		<class>cl.intranet.domain.Usuario</class>
 		<class>cl.intranet.domain.UsuarioGrupo</class>
 		<class>cl.intranet.domain.UsuarioPerfil</class>
 		<class>cl.intranet.domain.UsuarioProyecto</class>
 		<class>cl.intranet.domain.UsuarioRepositorio</class>
+		<class>cl.intranet.domain.UsuarioServidorCorreo</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE" />
 			<property name="javax.persistence.jdbc.password" value="hermes123" />
