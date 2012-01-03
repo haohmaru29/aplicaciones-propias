@@ -10,13 +10,16 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="PERFIL")
 public class Perfil implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false, precision=22)
 	private long idperfil;
 
+	@Column(length=200)
 	private String perfil;
 
 	//bi-directional many-to-one association to UsuarioPerfil

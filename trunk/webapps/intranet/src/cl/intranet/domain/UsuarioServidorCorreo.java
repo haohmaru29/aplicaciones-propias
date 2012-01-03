@@ -11,18 +11,19 @@ import java.util.List;
  */
 @Entity
 @Table(name="USUARIO_SERVIDOR_CORREO")
+@SequenceGenerator(name="USUARIO_SERVIDOR_CORREO_SEQ", sequenceName="USUARIO_SERVIDOR_CORREO_SEQ")
 public class UsuarioServidorCorreo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="IDUSUARIO_SERVIDOR_CORREO")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USUARIO_SERVIDOR_CORREO_SEQ")
+	@Column(name="IDUSUARIO_SERVIDOR_CORREO", unique=true, nullable=false, precision=22)
 	private long idusuarioServidorCorreo;
 
-	@Column(name="CLAVE_CORREO")
+	@Column(name="CLAVE_CORREO", length=300)
 	private String claveCorreo;
 
-	@Column(name="USUARIO_CORREO")
+	@Column(name="USUARIO_CORREO", length=300)
 	private String usuarioCorreo;
 
 	//bi-directional many-to-one association to Correo
@@ -36,6 +37,7 @@ public class UsuarioServidorCorreo implements Serializable {
 
 	//bi-directional many-to-one association to Usuario
     @ManyToOne
+	@JoinColumn(name="USUARIO_IDUSUARIO")
 	private Usuario usuario;
 
     public UsuarioServidorCorreo() {

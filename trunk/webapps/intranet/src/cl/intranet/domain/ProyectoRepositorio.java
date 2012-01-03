@@ -15,15 +15,17 @@ public class ProyectoRepositorio implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="IDPROYECTO_REPOSITORIO")
+	@Column(name="IDPROYECTO_REPOSITORIO", unique=true, nullable=false, precision=22)
 	private long idproyectoRepositorio;
 
 	//bi-directional many-to-one association to Proyecto
     @ManyToOne
+	@JoinColumn(name="PROYECTO_IDPROYECTO")
 	private Proyecto proyecto;
 
 	//bi-directional many-to-one association to Repositorio
     @ManyToOne
+	@JoinColumn(name="REPOSITORIO_IDREPOSITORIO")
 	private Repositorio repositorio;
 
     public ProyectoRepositorio() {

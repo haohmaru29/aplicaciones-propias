@@ -46,6 +46,6 @@ Ext.onReady(function() {
      
     var pool= new Ext.ux.ajax.pool();
     pool.appendObject( perfil );
-    //pool.appendObject( Repositorio.grid );
+    //pool.appendObject( Correo.tree.render );
     pool.init();
 });

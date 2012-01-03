@@ -16,7 +16,7 @@ System.MessageBox.confirm = function(message) {
         icon: Ext.MessageBox.QUESTION,
         buttons: Ext.MessageBox.Yes
     });
-}
+};
 
 System.MessageBox.info = function(message){
 	Ext.MessageBox.show({

@@ -16,8 +16,10 @@ public class Grupo implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false, precision=22)
 	private long idgrupo;
 
+	@Column(length=400)
 	private String nombre;
 
 	//bi-directional many-to-one association to UsuarioGrupo

@@ -15,15 +15,17 @@ public class UsuarioPerfil implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="IDUSUARIO_PERFIL")
+	@Column(name="IDUSUARIO_PERFIL", unique=true, nullable=false, precision=22)
 	private long idusuarioPerfil;
 
 	//bi-directional many-to-one association to Perfil
     @ManyToOne
+	@JoinColumn(name="PERFIL_IDPERFIL")
 	private Perfil perfil;
 
 	//bi-directional many-to-one association to Usuario
     @ManyToOne
+	@JoinColumn(name="USUARIO_IDUSUARIO")
 	private Usuario usuario;
 
     public UsuarioPerfil() {

@@ -8,7 +8,7 @@ Ext.require([
 
 Ext.onReady(function() {
     Ext.QuickTips.init();
-    var pageSize = 20;    
+    var pageSize = 18;    
     Ext.define('data', {
         extend: 'Ext.data.Model',
         fields: ['from', 'subject', 'messageNumber', 'messageDate', 'body']
@@ -67,8 +67,25 @@ Ext.onReady(function() {
         tbar: Ext.create('Ext.Toolbar',{
         	items:[{
         		iconCls: 'icon-email-add',
+        		tooltip: 'Crear nuevo email',
         		handler: function() {
         			Correo.newWindow.show();
+        		}
+        	}, {
+        		iconCls: 'icon-email-edit',
+        		tooltip: 'Responder email',
+        		id: 'btn_reply',
+        		disabled: true,
+        		handler: function() {
+        			//Correo.newWindow.show();
+        		}
+        	},{
+        		iconCls: 'icon-email-delete',
+        		tooltip: 'Eliminar email',
+        		id: 'btn_delete',
+        		disabled: true,
+        		handler: function() {
+        			//Correo.newWindow.show();
         		}
         	}]
         }),
@@ -79,15 +96,22 @@ Ext.onReady(function() {
             emptyMsg: "No hay mensajes para mostrar",
             items:[
                 '-', {
-                text: 'Show Preview'
+                text: 'botton'
             }]
         }),
         title: 'Mis Correos',
         viewConfig: {
-            stripeRows: true
+            stripeRows: true,
+            listeners: {
+                itemclick: function(view,rec,item,index,eventObj) {
+                	alert(rec.get('body'));
+                	Ext.getCmp('btn_reply').enable();
+                	Ext.getCmp('btn_delete').enable();
+                }
+             }
         }
     });
-    
+    /*
     var task = {
 	   run: function() {
 		   Correo.bandeja.store.load();
@@ -96,7 +120,6 @@ Ext.onReady(function() {
 	};
 	 
 	var runner = new Ext.util.TaskRunner();
-	 
 	runner.start(task);
- 
+	*/
 });

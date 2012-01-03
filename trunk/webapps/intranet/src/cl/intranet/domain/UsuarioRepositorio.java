@@ -15,15 +15,17 @@ public class UsuarioRepositorio implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="IDUSUARIO_REPOSITORIO")
+	@Column(name="IDUSUARIO_REPOSITORIO", unique=true, nullable=false, precision=22)
 	private long idusuarioRepositorio;
 
 	//bi-directional many-to-one association to Repositorio
     @ManyToOne
+	@JoinColumn(name="REPOSITORIO_IDREPOSITORIO")
 	private Repositorio repositorio;
 
 	//bi-directional many-to-one association to Usuario
     @ManyToOne
+	@JoinColumn(name="USUARIO_IDUSUARIO")
 	private Usuario usuario;
 
     public UsuarioRepositorio() {

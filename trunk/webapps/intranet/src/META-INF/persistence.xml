@@ -10,6 +10,7 @@
 		<class>cl.intranet.domain.Empresa</class>
 		<class>cl.intranet.domain.EmpresaServicio</class>
 		<class>cl.intranet.domain.Grupo</class>
+		<class>cl.intranet.domain.Icono</class>
 		<class>cl.intranet.domain.Perfil</class>
 		<class>cl.intranet.domain.Proyecto</class>
 		<class>cl.intranet.domain.ProyectoRepositorio</class>

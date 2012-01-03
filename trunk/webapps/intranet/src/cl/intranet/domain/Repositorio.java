@@ -16,9 +16,10 @@ public class Repositorio implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false, precision=22)
 	private long idrepositorio;
 
-	@Column(name="NOMBRE_REPOSITORIO")
+	@Column(name="NOMBRE_REPOSITORIO", length=2000)
 	private String nombreRepositorio;
 
 	//bi-directional many-to-one association to ProyectoRepositorio

@@ -3,7 +3,6 @@ package cl.intranet.domain;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
 
 
 /**
@@ -17,19 +16,28 @@ public class ServidorCorreo implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="ID_SERVIDOR_CORREO")
+	@Column(name="ID_SERVIDOR_CORREO", unique=true, nullable=false, precision=22)
 	private long idServidorCorreo;
 
+	@Column(length=200)
 	private String ip;
 
-	@Column(name="NOMBRE_SERVICIO")
+	@Column(name="NOMBRE_SERVICIO", length=200)
 	private String nombreServicio;
 
-	private BigDecimal puerto;
+	@Column(name="PORT_POP", precision=22)
+	private BigDecimal portPop;
 
-	//bi-directional many-to-one association to UsuarioServidorCorreo
-	@OneToMany(mappedBy="servidorCorreo")
-	private List<UsuarioServidorCorreo> usuarioServidorCorreos;
+	@Column(name="PORT_SMTP", length=20)
+	private String portSmtp;
+
+	@Column(length=200)
+	private String smtp;
+
+	//bi-directional many-to-one association to Icono
+    @ManyToOne
+	@JoinColumn(name="ICONO_ID_ICONOS")
+	private Icono icono;
 
     public ServidorCorreo() {
     }
@@ -58,20 +66,36 @@ public class ServidorCorreo implements Serializable {
 		this.nombreServicio = nombreServicio;
 	}
 
-	public BigDecimal getPuerto() {
-		return this.puerto;
+	public BigDecimal getPortPop() {
+		return this.portPop;
 	}
 
-	public void setPuerto(BigDecimal puerto) {
-		this.puerto = puerto;
+	public void setPortPop(BigDecimal portPop) {
+		this.portPop = portPop;
 	}
 
-	public List<UsuarioServidorCorreo> getUsuarioServidorCorreos() {
-		return this.usuarioServidorCorreos;
+	public String getPortSmtp() {
+		return this.portSmtp;
 	}
 
-	public void setUsuarioServidorCorreos(List<UsuarioServidorCorreo> usuarioServidorCorreos) {
-		this.usuarioServidorCorreos = usuarioServidorCorreos;
+	public void setPortSmtp(String portSmtp) {
+		this.portSmtp = portSmtp;
+	}
+
+	public String getSmtp() {
+		return this.smtp;
+	}
+
+	public void setSmtp(String smtp) {
+		this.smtp = smtp;
+	}
+
+	public Icono getIcono() {
+		return this.icono;
+	}
+
+	public void setIcono(Icono icono) {
+		this.icono = icono;
 	}
 	
 }
