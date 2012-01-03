@@ -84,6 +84,8 @@ public class correo {
 		} catch (MessagingException e) {
 			logger.error(e);
 			jsonView.prepareResponse(true, "Problemas al enviar mensaje <b>" + e.getMessage() + "</b>");
+		} finally {
+			sender.finalize();
 		}
 		jsonView.render(response);
 	}
