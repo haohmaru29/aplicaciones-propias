@@ -16,7 +16,7 @@ public class UsuarioProyecto implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="IDUSUARIO_PROYECTO")
+	@Column(name="IDUSUARIO_PROYECTO", unique=true, nullable=false, precision=22)
 	private long idusuarioProyecto;
 
     @Temporal( TemporalType.DATE)
@@ -25,10 +25,12 @@ public class UsuarioProyecto implements Serializable {
 
 	//bi-directional many-to-one association to Proyecto
     @ManyToOne
+	@JoinColumn(name="PROYECTO_IDPROYECTO")
 	private Proyecto proyecto;
 
 	//bi-directional many-to-one association to Usuario
     @ManyToOne
+	@JoinColumn(name="USUARIO_IDUSUARIO")
 	private Usuario usuario;
 
     public UsuarioProyecto() {

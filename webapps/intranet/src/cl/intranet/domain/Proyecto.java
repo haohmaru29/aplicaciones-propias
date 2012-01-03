@@ -12,11 +12,13 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name="PROYECTO")
 public class Proyecto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false, precision=22)
 	private long idproyecto;
 
     @Temporal( TemporalType.DATE)
@@ -27,9 +29,10 @@ public class Proyecto implements Serializable {
 	@Column(name="FECHA_TERMINO")
 	private Date fechaTermino;
 
+	@Column(precision=22)
 	private BigDecimal margen;
 
-	@Column(name="NOMBRE_PROYECTO")
+	@Column(name="NOMBRE_PROYECTO", length=200)
 	private String nombreProyecto;
 
 	//bi-directional many-to-one association to EmpresaServicio

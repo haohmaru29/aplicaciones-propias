@@ -83,6 +83,10 @@
     background:url(../icons/email_error.png) 0 no-repeat !important;
 }
 
+.icon-email-open{
+    background:url(../icons/email_open.png) 0 no-repeat !important;
+}
+
 .icon-chart-bar{
     background:url(../icons/chart_bar.png) 0 no-repeat !important;
 }
@@ -105,4 +109,14 @@
 .icon-bullet {
     background:url(../icons/bullet_wrench.png) 0 no-repeat !important;
 }
+.icon-gmail {
+    background:url(../icons/gmail.png) 0 no-repeat !important;
+}
 
+.icon-yahoo {
+    background:url(../icons/yahoo.png) 0 no-repeat !important;
+}
+
+.icon-hotmail {
+    background:url(../icons/hotmail.png) 0 no-repeat !important;
+}

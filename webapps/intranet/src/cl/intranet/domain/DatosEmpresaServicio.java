@@ -16,14 +16,16 @@ public class DatosEmpresaServicio implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="IDDATOS_EMPRESA_SERVICIO")
+	@Column(name="IDDATOS_EMPRESA_SERVICIO", unique=true, nullable=false, precision=22)
 	private long iddatosEmpresaServicio;
 
+	@Column(precision=22)
 	private BigDecimal celular;
 
-	@Column(name="NOMBRE_CONTACTO")
+	@Column(name="NOMBRE_CONTACTO", length=500)
 	private String nombreContacto;
 
+	@Column(precision=22)
 	private BigDecimal telefono;
 
 	//bi-directional many-to-one association to EmpresaServicio

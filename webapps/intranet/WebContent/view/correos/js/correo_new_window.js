@@ -1,60 +1,92 @@
 Ext.onReady(function() {
-	var panel1 = Ext.create('Ext.form.Panel', {
-		url: 'correo/sent',
-		height : 452,
-		width : 800,
-		layout : {
-			type : 'vbox',
-			//align : 'stretch',
-			padding : 5
-		},
-		renderTo : 'new_correo',
-		defaults : {
-			//flex : 1
-		}, // auto stretch
-		items : [ {
+	var panel1 = null;
+	Ext.define('account', {
+        extend: 'Ext.data.Model',
+        fields: [ 'idusuarioServidorCorreo', 'usuarioCorreo' ]
+    });
+	
+	Correo.newWindow.store= Ext.create('Ext.data.JsonStore', {
+        model: 'account',
+        autoLoad: false,
+        proxy: {
+              type: 'ajax',
+              url: 'correo/myaccounts',
+              method: 'post',
+              timeout: 550000,
+              reader: {
+                  type: 'json',
+                  root: 'data',
+                  totalProperty : 'count'
+              }
+          },
+          idProperty: 'idusuarioServidorCorreo',
+          fields: ['idusuarioServidorCorreo' , 'usuarioCorreo' ]
+    });
+	
+	panel1 = Ext.create('Ext.form.Panel', {
+		waitMsgTarget: true,
+		layout: 'absolute',
+		border: false,
+		renderTo : 'new_correo', 
+		waitMsg:'Enviando...',
+		items : [{
+			x: 5,
+            y: 5,
+            xtype: 'combo',
+            fieldLabel: 'Cuenta',
+            displayField: 'usuarioCorreo',
+            valueField: 'idusuarioServidorCorreo',
+            name: 'servidor',
+            multiSelect: false,
+            editable: false,
+            allowBlank: false,
+            forceSelection: true,
+            emptyText:'Seleccione cuenta...',
+            store: Correo.newWindow.store,
+            queryMode: 'remote',
+            anchor: '-5'
+		}, {
+			x: 5,
+            y: 35,
 			xtype : 'textfield',
 			fieldLabel : 'Destinatario',
 			name : 'to',
-			allowBlank: false
+			allowBlank: false,
+			anchor: '-5'
 		}, {
+			x: 5,
+            y: 65,
 			xtype : 'textfield',
 			fieldLabel : 'Asunto',
 			name : 'subject',
-			allowBlank: false
+			allowBlank: false,
+			anchor: '-5'
 		}, {
-			xtype : 'textfield',
+			x:5,
+            y: 95,
+            xtype : 'textarea',
+			hideLabel: true,
+			anchor: '-5 -5',
 			fieldLabel : 'body',
 			name : 'body'
 		}],
 		buttons: [{
-            text: 'Ingresar',
+            text: 'Enviar',
             handler: function() {
-            	var sessionMask = new Ext.LoadMask(Ext.get('new_correo')
-            	        , {
-            	            msg:"<b>Enviando correo...</b> Espere por favor...", 
-            	            removeMask:true
-            	        });
-                    	if(panel1.getForm().isValid() ) {
-                            sessionMask.show();
-                            panel1.getForm().submit({
-                                success: function(form, request) {
-                                    var ob =Ext.decode(request.response.responseText);
-                                    if(!ob.success) {
-                                        sessionMask.hide();
-                                        System.MessageBox.error("<b>Error al ingresar al sistema, verifique datos.");
-                                    } else {
-                                    	sessionMask.hide();
-                                    	System.MessageBox.info("<b>Mensaje enviado con exito</b>");
-                                    }
-                                    Correo.newWindow.panel.getForm().reset();
-                                },
-                                failure: function(form, request) {
-                                    sessionMask.hide();
-                                    System.MessageBox.error("<b>Se ha producido un error. " );
-                                }
-                            });
-                    }
+            	if(panel1.getForm().isValid() ) {
+                    panel1.getForm().submit({
+                    	url: 'correo/sent',
+                    	waitMsg:'Enviando...',
+                        success: function(form, request) {
+                            var ob =Ext.decode(request.response.responseText);
+                            System.MessageBox.info(ob.value);
+                            //panel1.getForm().reset();
+                        },
+                        failure: function(form, request) {
+                            System.MessageBox.error("<b>Se ha producido un error. " );
+                        }
+                    });
+                }
             }
         },{
             text: 'Limpiar',
@@ -71,9 +103,12 @@ Ext.onReady(function() {
 		border : false,
 		width : 500,
 		height : 400,
+		minWidth: 300,
+        minHeight: 200,
+        layout: 'fit',
+        plain:true,
 		closeAction : 'hide',
 		modal : true,
-		layout : 'fit',
 		items : [ panel1 ]
 	});
 });

@@ -15,15 +15,17 @@ public class UsuarioGrupo implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="IDUSUARIO_GRUPO")
+	@Column(name="IDUSUARIO_GRUPO", unique=true, nullable=false, precision=22)
 	private long idusuarioGrupo;
 
 	//bi-directional many-to-one association to Grupo
     @ManyToOne
+	@JoinColumn(name="GRUPO_IDGRUPO")
 	private Grupo grupo;
 
 	//bi-directional many-to-one association to Usuario
     @ManyToOne
+	@JoinColumn(name="USUARIO_IDUSUARIO")
 	private Usuario usuario;
 
     public UsuarioGrupo() {

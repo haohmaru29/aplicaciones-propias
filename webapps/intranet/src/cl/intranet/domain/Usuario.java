@@ -16,20 +16,26 @@ public class Usuario implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false, precision=22)
 	private long idusuario;
 
+	@Column(length=200)
 	private String clave;
 
+	@Column(length=500)
 	private String correo;
 
+	@Column(length=200)
 	private String nombre;
 
 	//bi-directional many-to-one association to Cargo
     @ManyToOne
+	@JoinColumn(name="CARGO_IDCARGO")
 	private Cargo cargo;
 
 	//bi-directional many-to-one association to Empresa
     @ManyToOne
+	@JoinColumn(name="EMPRESA_IDEMPRESA")
 	private Empresa empresa;
 
 	//bi-directional many-to-one association to UsuarioGrupo

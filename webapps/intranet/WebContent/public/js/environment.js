@@ -9,3 +9,4 @@ Ext.ns('Usuario.win');
 Ext.ns('Correo.tree');
 Ext.ns('Correo.bandeja');
 Ext.ns('Correo.newWindow');
+Ext.ns('Correo.newAccount');

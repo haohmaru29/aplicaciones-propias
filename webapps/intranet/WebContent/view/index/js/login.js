@@ -1,7 +1,6 @@
 Ext.onReady(function(){
-   
-    var loginForm = Ext.create('Ext.form.Panel',{
-        url: 'user/login',
+	var loginForm = null;
+	loginForm = Ext.create('Ext.form.Panel',{
         title: ' Ingreso Intranet ',
         renderTo: 'loginDiv',
         frame: true,
@@ -41,6 +40,7 @@ function fnLoginForm(theForm) {
     if(theForm.getForm().isValid() ) {
         sessionMask.show();
         theForm.getForm().submit({
+        	url: 'user/login',
             success: function(form, request) {
                 var ob =Ext.decode(request.response.responseText);
                 if(!ob.success) {

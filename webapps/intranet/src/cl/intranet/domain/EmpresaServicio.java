@@ -16,11 +16,13 @@ public class EmpresaServicio implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="IDEMPRESA_SERVICIO")
+	@Column(name="IDEMPRESA_SERVICIO", unique=true, nullable=false, precision=22)
 	private long idempresaServicio;
 
+	@Column(length=500)
 	private String direccion;
 
+	@Column(length=500)
 	private String nombre;
 
 	//bi-directional many-to-one association to DatosEmpresaServicio

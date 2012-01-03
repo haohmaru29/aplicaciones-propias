@@ -17,26 +17,28 @@ public class Correo implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false, precision=22)
 	private long idcorreos;
 
-	@Column(name="\"BODY\"")
+	@Column(name="\"BODY\"", length=2000)
 	private String body;
 
-	@Column(name="\"FROM\"")
+	@Column(name="\"FROM\"", length=200)
 	private String from;
 
     @Temporal( TemporalType.DATE)
 	@Column(name="MESSAGE_DATE")
 	private Date messageDate;
 
-	@Column(name="MESSAGE_NUMBER")
+	@Column(name="MESSAGE_NUMBER", precision=22)
 	private BigDecimal messageNumber;
 
+	@Column(length=2000)
 	private String subject;
 
 	//bi-directional many-to-one association to UsuarioServidorCorreo
     @ManyToOne
-	@JoinColumn(name="SERVIDOR_CORREO_IDUSUARIO_SERV")
+	@JoinColumn(name="USER_SERVIDOR_CORREO")
 	private UsuarioServidorCorreo usuarioServidorCorreo;
 
     public Correo() {
