@@ -1,6 +1,7 @@
 /** Global Vars */
 System.name = 'Intranet [Developer]';
 
+Ext.ns('Usuario.id');
 Ext.ns('Repositorio.grid');
 Ext.ns('Repositorio.win');
 Ext.ns('Home');

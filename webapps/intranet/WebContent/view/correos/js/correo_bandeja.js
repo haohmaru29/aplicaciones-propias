@@ -39,31 +39,43 @@ Ext.onReady(function() {
         stateful: true,
         frame: false,
         border: true,
-        height: 500,
-        renderTo: 'correos',
+        height: 400,
+        //renderTo: 'correos',
         stateId: 'stateGrid',
         columns: [{
                 text     : 'Number',
                 width     : 100,
                 sortable : true,
-                dataIndex: 'messageNumber'
+                dataIndex: 'messageNumber',
+                type : 'string'
             }, {
                 text     : 'Fecha',
                 flex     : 80,
                 sortable : false,
+                type : 'date',
                 dataIndex: 'messageDate'
             },{
                 text     : 'Remitente',
                 width     : 100,
                 sortable : false,
-                dataIndex: 'from'
+                dataIndex: 'from',
+                type : 'string'
             }, {
                 text     : 'Asunto',
                 flex     : 300,
                 sortable : false,
-                dataIndex: 'subject'
+                dataIndex: 'subject',
+                type : 'string'
             }
         ],
+        items :[{
+        	xtype: 'panel',
+            border: false,
+            layout: {
+                type: 'vbox',
+                align: 'stretch'
+            }
+        }],
         tbar: Ext.create('Ext.Toolbar',{
         	items:[{
         		iconCls: 'icon-email-add',
@@ -94,22 +106,46 @@ Ext.onReady(function() {
             displayInfo: true,
             displayMsg: 'Mostrando {0} - {1} de {2}',
             emptyMsg: "No hay mensajes para mostrar",
-            items:[
+            /*items:[
                 '-', {
                 text: 'botton'
-            }]
+            }]*/
         }),
         title: 'Mis Correos',
+        region: 'north',
         viewConfig: {
             stripeRows: true,
             listeners: {
                 itemclick: function(view,rec,item,index,eventObj) {
-                	alert(rec.get('body'));
+                	//alert(rec.get('body'));
+                	Ext.getCmp('detailPanel').update(rec.get('body'));
                 	Ext.getCmp('btn_reply').enable();
                 	Ext.getCmp('btn_delete').enable();
                 }
              }
         }
+    });
+    
+    Correo.bandeja.panel = Ext.create('Ext.Panel', {
+        renderTo: 'binding-example',
+        frame: false,
+        border: false,
+        renderTo: 'correos',
+        //width: 540,
+        height: 600,
+        layout: 'border',
+        items: [
+            Correo.bandeja.grid, {
+                id: 'detailPanel',
+                region: 'center',
+                split: true,
+                autoScroll: true,
+                border: true,
+                title: 'Detalle correo',
+                bodyPadding: 7,
+                bodyStyle: "background: #ffffff;",
+                html: 'Seleccione correo para ver detalle.'
+        }]
     });
     /*
     var task = {

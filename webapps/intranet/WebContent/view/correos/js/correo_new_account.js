@@ -27,24 +27,6 @@ Ext.onReady(function() {
 	        idProperty: 'idServidorCorreo',
 	        fields: ['idServidorCorreo' , 'nombreServicio' ]
     });
-	/*
-	Correo.newAccount.storeIcons= Ext.create('Ext.data.JsonStore', {
-        model: 'iconsServer',
-        autoLoad: false,
-        proxy: {
-              type: 'ajax',
-              url: 'icons/mail',
-              method: 'post',
-              timeout: 550000,
-              reader: {
-                  type: 'json',
-                  root: 'data',
-                  totalProperty : 'count'
-              }
-          },
-	        idProperty: 'idIconos',
-	        fields: ['idIconos', 'nombreIconos' ]
-    });*/
 	
 	newAccount = Ext.create('Ext.form.Panel', {
 		waitMsgTarget: true,
@@ -59,7 +41,7 @@ Ext.onReady(function() {
             fieldLabel: 'Servicio',
             displayField: 'nombreServicio',
             valueField: 'idServidorCorreo',
-            name: 'servidor',
+            name: 'servidorCorreo',
             multiSelect: false,
             editable: false,
             forceSelection: true,
@@ -67,22 +49,7 @@ Ext.onReady(function() {
             store: Correo.newAccount.store,
             queryMode: 'remote',
             anchor: '-5'
-		} /*,{
-			x: 5,
-            y: 35,
-            xtype: 'combo',
-            fieldLabel: 'Icono',
-            displayField: 'nombreIconos',
-            valueField: 'idIconos',
-            name: 'iconoServer',
-            multiSelect: false,
-            editable: false,
-            forceSelection: true,
-            emptyText:'Seleccione icono...',
-            store: Correo.newAccount.storeIcons,
-            queryMode: 'remote',
-            anchor: '-5'
-		}*/ ,{
+		} ,{
 			x: 5,
             y: 35,
 			xtype : 'textfield',
@@ -99,13 +66,24 @@ Ext.onReady(function() {
 			name : 'claveCorreo',
 			allowBlank: false,
 			anchor: '-5'
+		}, {
+			xtype: 'hidden',
+			name: 'usuario',
+			id: 'usuario',
+			value: ''
+		}, {
+			xtype: 'hidden',
+			name: 'mngr',
+			value: 'UsuarioServidorCorreo'
 		}],
 		buttons: [{
             text: 'Guardar',
             handler: function() {
+            	var id =Usuario.id; 
+            	newAccount.getForm().findField('usuario').setValue(id);
             	if(newAccount.getForm().isValid() ) {
             		newAccount.getForm().submit({
-            			url: 'correo/newAccount',
+            			url: 'admin/save',
                     	waitMsg:'Guardando, espere por favor...',
                         success: function(form, request) {
                             var ob =Ext.decode(request.response.responseText);

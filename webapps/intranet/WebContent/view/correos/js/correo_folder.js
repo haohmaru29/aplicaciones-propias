@@ -26,7 +26,7 @@ Ext.onReady(function() {
         id: 'tree',
         title: 'Mis Cuentas',
         store: Correo.tree.store,
-        height: 500,
+        height: 600,
         renderTo: 'mis_bandejas',
         tbar: Ext.create('Ext.Toolbar',{
         	items:[{
@@ -52,9 +52,9 @@ Ext.onReady(function() {
         			Ext.MessageBox.confirm('Confirmar', 'Esta seguro de eliminar cuenta?', function(btn, text) {
         				if(btn=='yes') {
     					 	Ext.Ajax.request({
-	    				         url : 'correo/delete',
+	    				         url : 'admin/delete',
 				                  method: 'POST',
-				                  params :{idCuenta: element},
+				                  params :{id: element, mngr: 'UsuarioServidorCorreo'},
 				                  success: function ( result, request ) {
 				                	  Correo.tree.store.load();
 				                	  System.MessageBox.info("<b>Cuenta eliminada con exito</b>");
