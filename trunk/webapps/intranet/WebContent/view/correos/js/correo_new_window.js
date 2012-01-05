@@ -61,9 +61,22 @@ Ext.onReady(function() {
 			name : 'subject',
 			allowBlank: false,
 			anchor: '-5'
-		}, {
+		},{
 			x:5,
             y: 95,
+			xtype: 'filefield',
+            id: 'form-file',
+            emptyText: 'Seleccion archivo',
+            fieldLabel: 'Adjunto',
+            name: 'photo-path',
+            buttonText: '',
+            anchor: '-5',	
+            buttonConfig: {
+                iconCls: 'icon-email-attach'
+            }
+		}, {
+			x:5,
+            y: 125,
             xtype : 'textarea',
 			hideLabel: true,
 			anchor: '-5 -5',

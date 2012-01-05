@@ -1,10 +1,7 @@
 package cl.intranet.web;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -69,7 +66,6 @@ public class correo {
 	}
 	
 	public void sent(HttpServletRequest request, HttpServletResponse response ) {
-		System.out.println(request.getParameterMap());
 		UsuarioServidorCorreo datosCorreo = usuarioCorreoManager.findById(request.getParameter("servidor"));
 		ServidorCorreo servidorCorreo = datosCorreo.getServidorCorreo();
 		SenderMailEngine sender = new SenderMailEngine(datosCorreo.getUsuarioCorreo(), datosCorreo.getClaveCorreo(), servidorCorreo.getNombreServicio(), Integer.parseInt(servidorCorreo.getPortSmtp()), servidorCorreo.getSmtp());
@@ -83,10 +79,8 @@ public class correo {
 			jsonView.prepareResponse(true, "Mensaje enviado correctamente a: <b>" + request.getParameter("to") + "</b>");
 		} catch (MessagingException e) {
 			logger.error(e);
-			jsonView.prepareResponse(true, "Problemas al enviar mensaje <b>" + e.getMessage() + "</b>");
-		} finally {
-			sender.finalize();
-		}
+			jsonView.prepareResponse(true, "Problemas al enviar mensaje: <b>" + e.getMessage() + "</b>");
+		} 
 		jsonView.render(response);
 	}
 	
@@ -97,25 +91,4 @@ public class correo {
 		jsonView.prepareResponse(datosCorreo);
 		jsonView.render(response);
 	}
-
-	public void newAccount(HttpServletRequest request, HttpServletResponse response ) {
-		Usuario usuario = (Usuario) request.getSession(false).getAttribute("usuario");
-		JsonView jsonView = new JsonView();
-		Map<String, Object> m = new HashMap<String, Object>();
-		m.put("usuarioCorreo", request.getParameter("usuarioCorreo"));
-		m.put("claveCorreo", request.getParameter("claveCorreo"));
-		m.put("servidorCorreo", request.getParameter("servidor") );
-		m.put("usuario", usuario.getIdusuario() + "");
-		usuarioCorreoManager.save(m);
-		jsonView.prepareResponse(true, "Cuenta creada con exito");
-		jsonView.render(response);
-	}
-	
-	public void delete(HttpServletRequest request, HttpServletResponse response ) {
-		usuarioCorreoManager.deleteById(request.getParameter("idCuenta"));
-		JsonView jsonView = new JsonView();
-		jsonView.prepareResponse(true, "Cuenta eliminado con exito");
-		jsonView.render(response);
-	}
-	
 }

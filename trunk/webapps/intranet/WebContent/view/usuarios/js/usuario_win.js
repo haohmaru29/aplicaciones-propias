@@ -40,7 +40,7 @@ Ext.onReady(function() {
             document.getElementById('session_mailUsuario').innerHTML = o.data.correo;
             document.getElementById('session_nombreEmpresa').innerHTML = o.data.empresa.empresa;
             document.getElementById('session_usuarioCargo').innerHTML = o.data.cargo.nombreCargo;
-            
+            Usuario.id = o.data.idusuario;
         }
     }, null );
      
