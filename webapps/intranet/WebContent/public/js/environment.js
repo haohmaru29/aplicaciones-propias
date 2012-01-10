@@ -11,3 +11,5 @@ Ext.ns('Correo.tree');
 Ext.ns('Correo.bandeja');
 Ext.ns('Correo.newWindow');
 Ext.ns('Correo.newAccount');
+Ext.ns('Evento.grid');
+Ext.ns('Evento.newEvento');

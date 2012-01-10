@@ -1,6 +1,6 @@
 Ext.onReady(function() {
 	var panel1 = null;
-	Ext.define('account', {
+	Ext.define('calendarios', {
         extend: 'Ext.data.Model',
         fields: [ 'idusuarioServidorCorreo', 'usuarioCorreo' ]
     });
@@ -61,7 +61,7 @@ Ext.onReady(function() {
 			name : 'subject',
 			allowBlank: false,
 			anchor: '-5'
-		},{
+		},/*{
 			x:5,
             y: 95,
 			xtype: 'filefield',
@@ -74,9 +74,9 @@ Ext.onReady(function() {
             buttonConfig: {
                 iconCls: 'icon-email-attach'
             }
-		}, {
+		}, */{
 			x:5,
-            y: 125,
+            y: 95,
             xtype : 'textarea',
 			hideLabel: true,
 			anchor: '-5 -5',

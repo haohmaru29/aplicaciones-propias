@@ -3,6 +3,7 @@
 <script type="text/javascript" src="view/repository/js/repo_win.js"></script>
 <jsp:include page="../correos/include.jsp"></jsp:include>
 <jsp:include page="../usuarios/include.jsp"></jsp:include>
+<jsp:include page="../eventos/include.jsp"></jsp:include>
 <div id="toolbar"></div>
 <!--
 <div style="width: 100%; height: 100%;" id="container">
@@ -16,8 +17,6 @@
 	<tr>
 		<td width="20%"><div id="mis_bandejas"></div></td>
 		<td width="60%"><div id="correos"></div></td>
-		<td width="20%">
-			<div id="mis_eventos"></div>
-		</td>
+		<td width="20%"><div id="mis_eventos"></div></td>
 	</tr>
 </table>
