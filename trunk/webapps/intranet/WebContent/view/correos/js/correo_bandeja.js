@@ -7,7 +7,6 @@ Ext.require([
 ]);
 
 Ext.onReady(function() {
-    Ext.QuickTips.init();
     var pageSize = 18;    
     Ext.define('data', {
         extend: 'Ext.data.Model',
@@ -37,6 +36,7 @@ Ext.onReady(function() {
     Correo.bandeja.grid = Ext.create('Ext.grid.Panel', {
         store: Correo.bandeja.store,
         stateful: true,
+        split : true,
         frame: false,
         border: true,
         height: 400,
