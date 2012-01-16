@@ -28,6 +28,10 @@ public class Usuario implements Serializable {
 	@Column(length=200)
 	private String nombre;
 
+	//bi-directional many-to-one association to Evento
+	@OneToMany(mappedBy="usuario")
+	private List<Evento> eventos;
+
 	//bi-directional many-to-one association to Cargo
     @ManyToOne
 	@JoinColumn(name="CARGO_IDCARGO")
@@ -93,6 +97,14 @@ public class Usuario implements Serializable {
 		this.nombre = nombre;
 	}
 
+	public List<Evento> getEventos() {
+		return this.eventos;
+	}
+
+	public void setEventos(List<Evento> eventos) {
+		this.eventos = eventos;
+	}
+	
 	public Cargo getCargo() {
 		return this.cargo;
 	}

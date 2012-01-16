@@ -2,7 +2,6 @@ package cl.intranet.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
 import java.util.Date;
 
 
@@ -20,6 +19,9 @@ public class Evento implements Serializable {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_EVENTO")
 	@Column(unique=true, nullable=false, precision=22)
 	private long idevento;
+
+	@Column(length=800)
+	private String descripcion;
 
     @Temporal( TemporalType.DATE)
 	@Column(name="FECHA_INICIO")
@@ -41,15 +43,15 @@ public class Evento implements Serializable {
 	@Column(length=100)
 	private String titulo;
 
-	//bi-directional many-to-one association to Usuario
-    @ManyToOne
-	@JoinColumn(name="IDUSUARIO")
-	private Usuario usuario;
-
 	//bi-directional many-to-one association to Calendario
     @ManyToOne
 	@JoinColumn(name="IDCALENDARIO")
 	private Calendario calendario;
+
+	//bi-directional many-to-one association to Usuario
+    @ManyToOne
+	@JoinColumn(name="IDUSUARIO")
+	private Usuario usuario;
 
     public Evento() {
     }
@@ -60,6 +62,14 @@ public class Evento implements Serializable {
 
 	public void setIdevento(long idevento) {
 		this.idevento = idevento;
+	}
+
+	public String getDescripcion() {
+		return this.descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public Date getFechaInicio() {
@@ -110,20 +120,20 @@ public class Evento implements Serializable {
 		this.titulo = titulo;
 	}
 
-	public Usuario getUsuario() {
-		return this.usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	
 	public Calendario getCalendario() {
 		return this.calendario;
 	}
 
 	public void setCalendario(Calendario calendario) {
 		this.calendario = calendario;
+	}
+	
+	public Usuario getUsuario() {
+		return this.usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 }

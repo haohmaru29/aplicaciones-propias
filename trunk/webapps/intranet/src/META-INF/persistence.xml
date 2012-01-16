@@ -9,6 +9,7 @@
 		<class>cl.intranet.domain.DatosEmpresaServicio</class>
 		<class>cl.intranet.domain.Empresa</class>
 		<class>cl.intranet.domain.EmpresaServicio</class>
+		<class>cl.intranet.domain.Evento</class>
 		<class>cl.intranet.domain.Grupo</class>
 		<class>cl.intranet.domain.Icono</class>
 		<class>cl.intranet.domain.Perfil</class>
@@ -22,10 +23,7 @@
 		<class>cl.intranet.domain.UsuarioProyecto</class>
 		<class>cl.intranet.domain.UsuarioRepositorio</class>
 		<class>cl.intranet.domain.UsuarioServidorCorreo</class>
-		<class>cl.intranet.domain.Evento</class>
-		<class>cl.intranet.domain.UsuarioEvento</class>
 		<class>cl.intranet.domain.Calendario</class>
-		<class>cl.intranet.domain.UsuarioCalendario</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE" />
 			<property name="javax.persistence.jdbc.password" value="hermes123" />

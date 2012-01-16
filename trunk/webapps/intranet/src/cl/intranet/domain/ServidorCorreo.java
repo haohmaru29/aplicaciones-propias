@@ -3,6 +3,7 @@ package cl.intranet.domain;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 
 /**
@@ -38,6 +39,10 @@ public class ServidorCorreo implements Serializable {
     @ManyToOne
 	@JoinColumn(name="ICONO_ID_ICONOS")
 	private Icono icono;
+
+	//bi-directional many-to-one association to UsuarioServidorCorreo
+	@OneToMany(mappedBy="servidorCorreo")
+	private List<UsuarioServidorCorreo> usuarioServidorCorreos;
 
     public ServidorCorreo() {
     }
@@ -96,6 +101,14 @@ public class ServidorCorreo implements Serializable {
 
 	public void setIcono(Icono icono) {
 		this.icono = icono;
+	}
+	
+	public List<UsuarioServidorCorreo> getUsuarioServidorCorreos() {
+		return this.usuarioServidorCorreos;
+	}
+
+	public void setUsuarioServidorCorreos(List<UsuarioServidorCorreo> usuarioServidorCorreos) {
+		this.usuarioServidorCorreos = usuarioServidorCorreos;
 	}
 	
 }
