@@ -2,8 +2,8 @@ package cl.intranet.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -12,11 +12,12 @@ import java.util.List;
  */
 @Entity
 @Table(name="EVENTO")
+@SequenceGenerator(name="SEQ_EVENTO", sequenceName="SEQ_EVENTO")
 public class Evento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_EVENTO")
 	@Column(unique=true, nullable=false, precision=22)
 	private long idevento;
 
@@ -40,9 +41,15 @@ public class Evento implements Serializable {
 	@Column(length=100)
 	private String titulo;
 
-	//bi-directional many-to-one association to UsuarioEvento
-	@OneToMany(mappedBy="evento")
-	private List<UsuarioEvento> usuarioEventos;
+	//bi-directional many-to-one association to Usuario
+    @ManyToOne
+	@JoinColumn(name="IDUSUARIO")
+	private Usuario usuario;
+
+	//bi-directional many-to-one association to Calendario
+    @ManyToOne
+	@JoinColumn(name="IDCALENDARIO")
+	private Calendario calendario;
 
     public Evento() {
     }
@@ -103,12 +110,20 @@ public class Evento implements Serializable {
 		this.titulo = titulo;
 	}
 
-	public List<UsuarioEvento> getUsuarioEventos() {
-		return this.usuarioEventos;
+	public Usuario getUsuario() {
+		return this.usuario;
 	}
 
-	public void setUsuarioEventos(List<UsuarioEvento> usuarioEventos) {
-		this.usuarioEventos = usuarioEventos;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
+	public Calendario getCalendario() {
+		return this.calendario;
+	}
+
+	public void setCalendario(Calendario calendario) {
+		this.calendario = calendario;
 	}
 	
 }
