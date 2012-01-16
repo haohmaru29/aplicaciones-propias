@@ -19,12 +19,12 @@ public class Calendario implements Serializable {
 	@Column(unique=true, nullable=false, precision=22)
 	private long idcalendario;
 
-	@Column(name="NOMBRE_CALENDARIO", length=100)
+	@Column(name="NOMBRE_CALENDARIO", length=200)
 	private String nombreCalendario;
 
-	//bi-directional many-to-one association to UsuarioCalendario
+	//bi-directional many-to-one association to Evento
 	@OneToMany(mappedBy="calendario")
-	private List<UsuarioCalendario> usuarioCalendarios;
+	private List<Evento> eventos;
 
     public Calendario() {
     }
@@ -45,12 +45,12 @@ public class Calendario implements Serializable {
 		this.nombreCalendario = nombreCalendario;
 	}
 
-	public List<UsuarioCalendario> getUsuarioCalendarios() {
-		return this.usuarioCalendarios;
+	public List<Evento> getEventos() {
+		return this.eventos;
 	}
 
-	public void setUsuarioCalendarios(List<UsuarioCalendario> usuarioCalendarios) {
-		this.usuarioCalendarios = usuarioCalendarios;
+	public void setEventos(List<Evento> eventos) {
+		this.eventos = eventos;
 	}
 	
 }

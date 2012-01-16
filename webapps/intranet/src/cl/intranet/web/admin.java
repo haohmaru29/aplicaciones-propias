@@ -20,6 +20,7 @@ public class admin {
 	}
 	
 	public void save(HttpServletRequest request, HttpServletResponse response ) {
+		System.out.println(request.getParameter("calendario") );
 		serviceManager = ServiceManager.factory(request.getParameter("mngr").concat("Manager"));
 		request.getParameterMap().remove("mngr");
 		serviceManager.save(request.getParameterMap());

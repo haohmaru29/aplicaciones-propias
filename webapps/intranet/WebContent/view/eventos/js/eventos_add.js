@@ -1,4 +1,28 @@
 Ext.onReady(function() {
+/*	
+	Ext.define('calendarios', {
+        extend: 'Ext.data.Model',
+        fields: ['idcalendario', 'nombreCalendario' ]
+    });
+	*/
+	Evento.newEvento.store = Ext.create('Ext.data.JsonStore', {
+        //model: 'calendarios',
+        autoLoad: false,
+        proxy: {
+              type: 'ajax',
+              url: 'calendario/usuario',
+              method: 'post',
+              timeout: 550000,
+              reader: {
+                  type: 'json',
+                  root: 'data',
+                  totalProperty : 'count'
+              }
+          },
+          idProperty: 'idCalendario',
+          fields: ['idcalendario', 'nombreCalendario' ]
+    });
+	
 	 Ext.apply(Ext.form.field.VTypes, {
 	        daterange: function(val, field) {
 	            var date = field.parseDate(val);
@@ -23,35 +47,11 @@ Ext.onReady(function() {
 	        daterangeText: 'Fecha inicial debe ser menor a la Fecha final'
 	 });
 	
-	
-	Ext.define('calendarios', {
-        extend: 'Ext.data.Model',
-        fields: [ 'nombreCalendario', 'idCalendario' ]
-    });
-	
-	Evento.newEvento.store = Ext.create('Ext.data.JsonStore', {
-        model: 'account',
-        autoLoad: false,
-        proxy: {
-              type: 'ajax',
-              url: 'calendario/usuario',
-              method: 'post',
-              timeout: 550000,
-              reader: {
-                  type: 'json',
-                  root: 'data',
-                  totalProperty : 'count'
-              }
-          },
-          idProperty: 'idCalendario',
-          fields: ['nombreCalendario' , 'idCalendario' ]
-    });
-	
 	Evento.newEvento.panel = Ext.create('Ext.form.Panel', {
 		waitMsgTarget: true,
 		layout: 'absolute',
 		border: false,
-		renderTo : 'new_correo', 
+		renderTo : 'new_event', 
 		waitMsg:'Enviando...',
 		items : [ {
 			x: 5,
@@ -67,8 +67,9 @@ Ext.onReady(function() {
             xtype: 'combo',
             fieldLabel: 'Calendario',
             displayField: 'nombreCalendario',
-            valueField: 'idCalendario',
+            valueField: 'idcalendario',
             name: 'calendario',
+            id: 'calendario',
             multiSelect: false,
             editable: false,
             allowBlank: false,
@@ -127,17 +128,53 @@ Ext.onReady(function() {
 			anchor: '-5',
 			fieldLabel : 'Lugar',
 			name : 'lugar'
+		}, {
+			x:5,
+            y: 245,
+            xtype : 'textarea',
+			hideLabel: true,
+			anchor: '-5 -5',
+			fieldLabel : 'Descripcion',
+			name : 'descripcion'
+		}, {
+			x:5,
+            y: 275,
+            xtype : 'hidden',
+			name : 'usuario'
+		}, {
+			x:5,
+            y: 305,
+            xtype : 'hidden',
+			name : 'mngr',
+			value: 'Evento'
 		}],
+		tbar: Ext.create('Ext.Toolbar',{
+        	items:[{
+        		iconCls: 'icon-user-add',
+        		tooltip: 'Agregar invitados',
+        		handler: function() {
+        			alert(1);
+        		}
+        	}]
+        }),
 		buttons: [{
             text: 'Crear evento',
             handler: function() {
             	if(Evento.newEvento.panel.getForm().isValid() ) {
+            		var id =Usuario.id; 
+            		Evento.newEvento.panel.getForm().findField('usuario').setValue(id);
             		Evento.newEvento.panel.getForm().submit({
-                    	//url: 'correo/sent',
-                    	waitMsg:'Enviando...',
+                    	url: 'admin/save',
+                    	waitMsg:'Guardando evento, espere por favor...',
                         success: function(form, request) {
                             var ob =Ext.decode(request.response.responseText);
-                            System.MessageBox.info(ob.value);
+                            if(!ob.success) {
+                            	System.MessageBox.info(ob.value);
+                            } else {
+                            	Evento.grid.store.load();
+                            	System.MessageBox.info('Evento guardado con exito');
+                            	Evento.newEvento.panel.getForm().reset(); 
+                            }
                         },
                         failure: function(form, request) {
                             System.MessageBox.error("<b>Se ha producido un error. " );

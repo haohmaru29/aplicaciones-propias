@@ -1,12 +1,13 @@
 Ext.onReady(function(){
-    Ext.define('eventos_usuario', {
+    /*
+	Ext.define('eventos_usuario', {
         extend: 'Ext.data.Model',
         fields: ['titulo', 'fecha_inicio', 'idusuario_evento']
     });
-    
+    */
     Evento.grid.store = Ext.create('Ext.data.JsonStore', {
           autoLoad: true,
-          model: 'eventos_usuario',
+          //model: 'eventos_usuario',
           remoteSort: false,
           proxy: {
               type: 'ajax',
@@ -20,7 +21,7 @@ Ext.onReady(function(){
               }
           },
           idProperty: 'idusuario_evento',
-          fields: [ 'titulo', 'fecha_inicio', 'idusuario_evento' ]
+          fields: [ 'titulo', 'fechaInicio', 'idevento' ]
     });
     
     Evento.grid.render = Ext.create('Ext.grid.Panel', {
@@ -34,40 +35,53 @@ Ext.onReady(function(){
         stateId: 'stateGrid',
         columns: [{
                 text     : 'Id',
-                width     : 100,
+                width     : 30,
                 sortable : true,
-                dataIndex: 'idusuario_evento'
+                dataIndex: 'idevento'
             }, {
                 text     : 'Fecha inicio',
                 flex     : 80,
                 sortable : false,
                 type : 'date',
-                dataIndex: 'fecha_inicio'
-            },{
+                dataIndex: 'fechaInicio'
+            },/*{
                 text     : 'Titulo',
                 width     : 100,
                 sortable : false,
                 dataIndex: 'titulo',
                 type : 'string'
-            }, {
+            }, */{
                 xtype: 'actioncolumn',
                 width: 50,
                 items: [{
-                    iconCls   : 'icon-edit',
+                	icon: 'library/system/icons/application_form_edit.png',
                     tooltip: 'Editar evento',
                     handler: function(grid, rowIndex, colIndex) {
-                        /*
-                          	var rec = store.getAt(rowIndex);
-                        	alert("Sell " + rec.get('company'));
-                        */
+                    	var rec = Evento.grid.store.getAt(rowIndex);
+                    	alert("evento " + rec.get('idevento'));
                     }
                 }, {
-                    iconCls   : 'icon-delete',
+                	icon: 'library/system/icons/delete.png',
                     tooltip: 'Eliminar evento',
                     handler: function(grid, rowIndex, colIndex) {
-                        Ext.MessageBox.confirm('Esta seguro de eliminar el evento?', function(btn) {
+                        Ext.MessageBox.confirm(System.name, 'Esta seguro de eliminar el evento?', function(btn) {
                         		if(btn == 'yes') {
-                        			
+                        			var rec = Evento.grid.store.getAt(rowIndex);
+                                	var element = rec.get('idevento');
+                                	Ext.Ajax.request({
+	       	    				         url : 'admin/delete',
+	       				                  method: 'POST',
+	       				                  params :{id: element, mngr: 'Evento'},
+	       				                  success: function ( result, request ) {
+	       				                	  Evento.grid.store.load();
+	       				                	  System.MessageBox.info("<b>Evento eliminado con exito</b>");
+	       					              },
+	       				                  failure: function ( result, request ) {
+	       				                	  System.MessageBox.error("<b>Problemas al eliminar evento</b>, favor intente mas tarde.");
+	       					              }
+	           				       });
+                                	
+                                	
                         		} 
                         });
                     }

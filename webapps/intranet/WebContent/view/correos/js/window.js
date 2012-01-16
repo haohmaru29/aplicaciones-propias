@@ -8,7 +8,7 @@ Ext.require([
 
 Ext.onReady(function() {
     Ext.QuickTips.init();
-    var pageSize = 20;    
+    //var pageSize = 20;    
     Ext.define('data', {
         extend: 'Ext.data.Model',
         fields: ['from', 'subject', 'messageNumber', 'messageDate', 'body']
