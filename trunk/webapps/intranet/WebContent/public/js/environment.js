@@ -13,3 +13,4 @@ Ext.ns('Correo.newWindow');
 Ext.ns('Correo.newAccount');
 Ext.ns('Evento.grid');
 Ext.ns('Evento.newEvento');
+Ext.ns('Calendario.win');

@@ -1,12 +1,5 @@
 Ext.onReady(function() {
-/*	
-	Ext.define('calendarios', {
-        extend: 'Ext.data.Model',
-        fields: ['idcalendario', 'nombreCalendario' ]
-    });
-	*/
 	Evento.newEvento.store = Ext.create('Ext.data.JsonStore', {
-        //model: 'calendarios',
         autoLoad: false,
         proxy: {
               type: 'ajax',
@@ -20,7 +13,7 @@ Ext.onReady(function() {
               }
           },
           idProperty: 'idCalendario',
-          fields: ['idcalendario', 'nombreCalendario' ]
+          fields: ['id', 'title' ]
     });
 	
 	 Ext.apply(Ext.form.field.VTypes, {
@@ -66,8 +59,8 @@ Ext.onReady(function() {
             y: 65,
             xtype: 'combo',
             fieldLabel: 'Calendario',
-            displayField: 'nombreCalendario',
-            valueField: 'idcalendario',
+            displayField: 'title',
+            valueField: 'id',
             name: 'calendario',
             id: 'calendario',
             multiSelect: false,
@@ -172,6 +165,7 @@ Ext.onReady(function() {
                             	System.MessageBox.info(ob.value);
                             } else {
                             	Evento.grid.store.load();
+                            	Calendario.win.eventStore.load();
                             	System.MessageBox.info('Evento guardado con exito');
                             	Evento.newEvento.panel.getForm().reset(); 
                             }

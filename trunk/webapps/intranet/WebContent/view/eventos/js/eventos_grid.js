@@ -1,13 +1,7 @@
 Ext.onReady(function(){
-    /*
-	Ext.define('eventos_usuario', {
-        extend: 'Ext.data.Model',
-        fields: ['titulo', 'fecha_inicio', 'idusuario_evento']
-    });
-    */
+
     Evento.grid.store = Ext.create('Ext.data.JsonStore', {
           autoLoad: true,
-          //model: 'eventos_usuario',
           remoteSort: false,
           proxy: {
               type: 'ajax',
@@ -20,8 +14,8 @@ Ext.onReady(function(){
                   totalProperty : 'count'
               }
           },
-          idProperty: 'idusuario_evento',
-          fields: [ 'titulo', 'fechaInicio', 'idevento' ]
+          idProperty: 'id',
+          fields: [ 'title', 'start', 'id' ]
     });
     
     Evento.grid.render = Ext.create('Ext.grid.Panel', {
@@ -37,20 +31,14 @@ Ext.onReady(function(){
                 text     : 'Id',
                 width     : 30,
                 sortable : true,
-                dataIndex: 'idevento'
+                dataIndex: 'id'
             }, {
                 text     : 'Fecha inicio',
                 flex     : 80,
                 sortable : false,
                 type : 'date',
-                dataIndex: 'fechaInicio'
-            },/*{
-                text     : 'Titulo',
-                width     : 100,
-                sortable : false,
-                dataIndex: 'titulo',
-                type : 'string'
-            }, */{
+                dataIndex: 'start'
+            }, {
                 xtype: 'actioncolumn',
                 width: 50,
                 items: [{
@@ -80,8 +68,6 @@ Ext.onReady(function(){
 	       				                	  System.MessageBox.error("<b>Problemas al eliminar evento</b>, favor intente mas tarde.");
 	       					              }
 	           				       });
-                                	
-                                	
                         		} 
                         });
                     }
@@ -103,46 +89,11 @@ Ext.onReady(function(){
         		handler: function() {
         			Evento.newEvento.window.show();
         		}
-        	}/*, {
-        		iconCls: 'icon-email-edit',
-        		tooltip: 'Responder email',
-        		id: 'btn_reply',
-        		disabled: true,
-        		handler: function() {
-        			//Correo.newWindow.show();
-        		}
-        	},{
-        		iconCls: 'icon-email-delete',
-        		tooltip: 'Eliminar email',
-        		id: 'btn_delete',
-        		disabled: true,
-        		handler: function() {
-        			//Correo.newWindow.show();
-        		}
-        	}*/]
-        }),/*
-        bbar: Ext.create('Ext.PagingToolbar', {
-            store: Correo.bandeja.store,
-            displayInfo: true,
-            displayMsg: 'Mostrando {0} - {1} de {2}',
-            emptyMsg: "No hay mensajes para mostrar",
-            items:[
-                '-', {
-                text: 'botton'
-            }]
-        }),*/
+        	}]
+        }),
         title: 'Proximos eventos',
-        //region: 'north',
         viewConfig: {
-            stripeRows: true/*,
-            listeners: {
-                itemclick: function(view,rec,item,index,eventObj) {
-                	//alert(rec.get('body'));
-                	Ext.getCmp('detailPanel').update(rec.get('body'));
-                	Ext.getCmp('btn_reply').enable();
-                	Ext.getCmp('btn_delete').enable();
-                }
-             }*/
+            stripeRows: true
         }
     });
 	
