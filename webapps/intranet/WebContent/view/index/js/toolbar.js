@@ -29,7 +29,7 @@ Ext.onReady(function(){
             iconCls: 'icon-app',
             tooltip: 'Ver calendario',
             handler: function() {
-                
+            	Calendario.win.render.show();
             }
         },'|', {
         	text: 'Administrar',

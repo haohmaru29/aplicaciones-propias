@@ -8,7 +8,7 @@ import cl.tidev.commons.mvc.service.jpa.AbstractServiceManager;
 
 public class EventoManager extends AbstractServiceManager<Evento> {
 
-	public List<?> findNextEventsByUser(Long idUser) {
+	public List<Evento> findNextEventsByUser(Long idUser) {
 		return ((EventoController) jpaController).findNextEventsByUser(idUser);
 	}
 }
