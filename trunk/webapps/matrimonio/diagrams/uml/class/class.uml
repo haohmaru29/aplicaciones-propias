@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_invt0Gv2EeGmL_j0aw13Nw" name="class">
+  <elementImport xmi:id="_ioy2sGv2EeGmL_j0aw13Nw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+  </elementImport>
+  <elementImport xmi:id="_ioy2sWv2EeGmL_j0aw13Nw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <elementImport xmi:id="_ioy2smv2EeGmL_j0aw13Nw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+  </elementImport>
+  <elementImport xmi:id="_iozdwGv2EeGmL_j0aw13Nw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_lcK9QGv2EeGmL_j0aw13Nw" name="cl.matrimonio.service" clientDependency="_9eqs8Gv2EeGmL_j0aw13Nw">
+    <packagedElement xmi:type="uml:Class" xmi:id="_o1tE4Gv2EeGmL_j0aw13Nw" name="UsuarioManager"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_qYGrwGv2EeGmL_j0aw13Nw" name="cl.usuario.web">
+    <packagedElement xmi:type="uml:Class" xmi:id="_sVuPAGv2EeGmL_j0aw13Nw" name="usuario"/>
+    <packagedElement xmi:type="uml:Realization" xmi:id="_9eqs8Gv2EeGmL_j0aw13Nw" name="UsuarioManager" supplier="_qYGrwGv2EeGmL_j0aw13Nw" client="_lcK9QGv2EeGmL_j0aw13Nw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_v4OscGv2EeGmL_j0aw13Nw" name="package">
+    <packagedElement xmi:type="uml:Class" xmi:id="_w-6AoGv2EeGmL_j0aw13Nw" name="UsuarioController"/>
+  </packagedElement>
+</uml:Package>
