@@ -82,49 +82,42 @@ public abstract class AbstractJpaController<T> {
     }
 
     public T save(T entity) {
-        if (entity == null) {
-            throw new PersistenceException("Entity may not be null");
+    	if (entity == null) {
+    		throw new PersistenceException("Entity may not be null");
         }
-
         EntityManager em = null;
-        jpaConnection.log("saving " + getEntityClass().getSimpleName() + " instance", Level.DEBUG, null);
+        this.jpaConnection.log("saving " + getEntityClass().getSimpleName() + " instance", Level.DEBUG, null);
         try {
-            em = jpaConnection.getEntityManager();
-            if (!em.getTransaction().isActive()) {
-                em.getTransaction().begin();
-            }
-
-            if (em.contains(entity))
-            	em.merge(entity);
+        	em = this.jpaConnection.getEntityManager();
+        	if (!em.getTransaction().isActive()) em.getTransaction().begin();
+      
+        	if (em.contains(entity))
+        		entity = em.merge(entity);
             else {
             	try {
             		em.persist(entity);
             	} catch (Exception e) {
-            		this.jpaConnection.log("Entity exist [Updating]", Level.ERROR, e);
-            	    if (em.isOpen()) em.close();
-            	    em = this.jpaConnection.getEntityManager();
-            	    if (!em.getTransaction().isActive()) em.getTransaction().begin();
-            	    em.merge(entity);
+	        		this.jpaConnection.log("Entity exist [Updating]", Level.ERROR, e);
+	        		if (em.isOpen()) em.close();
+	        		em = this.jpaConnection.getEntityManager();
+	        		if (!em.getTransaction().isActive()) em.getTransaction().begin();
+	        		entity = em.merge(entity);
             	}
             }
-
-            em.getTransaction().commit();
-            jpaConnection.log("save successful", Level.DEBUG, null);
-
-        } catch (RuntimeException re) {
-            if (jpaConnection.getEntityManager().isOpen()) {
-                jpaConnection.rollback();
-            }
-
-            jpaConnection.log("save failed", Level.ERROR, re);
-            throw re;
-        } finally {
-            if (em.isOpen()) {
-                em.close();
-            }
-        }
-
-        return entity;
+      
+        	em.getTransaction().commit();
+        	this.jpaConnection.log("save successful", Level.DEBUG, null);
+          } catch (RuntimeException re) {
+        	  	if (this.jpaConnection.getEntityManager().isOpen()) {
+        		  	this.jpaConnection.rollback();
+        	  	}
+        	  	this.jpaConnection.log("save failed", Level.ERROR, re);
+        	  	throw re;
+          } finally {
+	  			if (em.isOpen()) em.close();
+          }
+      
+    	return entity;
     }
 
     public T update(Object id, Map<?, ?> params) {
@@ -152,7 +145,6 @@ public abstract class AbstractJpaController<T> {
         return instance;
     }
 
-    @Deprecated
     public T update(T entity) {
 
         EntityManager em = null;

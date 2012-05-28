@@ -8,6 +8,18 @@ public final class ArrayUtils {
 
     private static final Logger logger = Logger.getLogger(ArrayUtils.class);
     
+    public static String extract(Object data) {
+    	String str = null;
+    	try {
+    		Object[] d = (Object[])data;
+    		str = (String)d[0];
+    	} catch (Exception ex) {
+    		str = data.toString();
+    	}
+    	 
+    	return str;
+   }
+    
     public static String extract(String[] data) {
         String str = null;
         try {

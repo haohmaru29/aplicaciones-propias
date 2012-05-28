@@ -6,10 +6,8 @@ import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -89,29 +87,21 @@ public final class ClassUtils {
             parsedValue = value;
 
         } else if (field.equals(Long.class) || field.equals(long.class)) {
-            parsedValue = Long.parseLong((String) value);
-
+            parsedValue = Long.parseLong(ArrayUtils.extract(value) );
         } else if (field.equals(Integer.class) || field.equals(int.class)) {
-            parsedValue = Integer.parseInt((String) value);
+            parsedValue = Integer.parseInt(ArrayUtils.extract(value));
 
         } else if (field.equals(Boolean.class) || field.equals(boolean.class)) {
             parsedValue = Boolean.parseBoolean((String) value);
 
         } else if (field.equals(Double.class) || field.equals(float.class)) {
-            parsedValue = Double.parseDouble((String) value);
+            parsedValue = Double.parseDouble(ArrayUtils.extract(value));
 
         } else if (field.equals(BigDecimal.class)) {
-            parsedValue = BigDecimal.valueOf(Double.parseDouble((String) value));
+            parsedValue = BigDecimal.valueOf(Double.parseDouble(ArrayUtils.extract(value)) );
 
-        } else if (field.equals(Timestamp.class)) {
-            try {
-                String date = value.toString().replace("Dic", "Dec").replace("Ene", "Jan").replace("Abr", "Apr").replace("Ago", "Aug").replace("T", " ").concat(".0");
-
-                parsedValue = new Timestamp(((Date) new SimpleDateFormat("dd-MMM-yy", Locale.US).parse(date)).getTime());
-            } catch (ParseException e) {
-                parsedValue = Timestamp.valueOf((String) value);
-            }
-
+        }else if ((field.equals(Timestamp.class)) || (field.equals(Date.class))) {
+        	parsedValue = DateUtils.stringToDate(ArrayUtils.extract(value));
         } else {
             AbstractServiceManager<?> serviceManager =
                     ServiceManager.factory(field.getSimpleName().concat("Manager"));
