@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="E:/JAVA/librerias/Eclipse Library/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="E:/JAVA/librerias/Eclipse Library/commons-dbcp-1.3.jar"/>
+	<classpathentry kind="lib" path="E:/JAVA/librerias/Eclipse Library/commons-fileupload-1.2.2.jar"/>
+	<classpathentry kind="lib" path="E:/JAVA/librerias/Eclipse Library/commons-io-2.0.1.jar"/>
+	<classpathentry kind="lib" path="E:/JAVA/librerias/Eclipse Library/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="E:/JAVA/librerias/Eclipse Library/commons-pool-1.5.4.jar"/>
+	<classpathentry kind="lib" path="E:/JAVA/librerias/Eclipse Library/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="E:/JAVA/librerias/Eclipse Library/mail.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jpa2 &amp; hibernate"/>
+	<classpathentry kind="lib" path="E:/JAVA/librerias/Eclipse Library/servlet-api.jar"/>
+	<classpathentry kind="lib" path="E:/JAVA/librerias/Eclipse Library/jxl.jar"/>
+	<classpathentry kind="lib" path="E:/JAVA/librerias/Eclipse Library/itext/core-renderer.jar"/>
+	<classpathentry kind="lib" path="E:/JAVA/librerias/Eclipse Library/itext/itext-paulo-155.jar"/>
+	<classpathentry kind="lib" path="E:/JAVA/librerias/Eclipse Library/itext/jtidy-r938.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
