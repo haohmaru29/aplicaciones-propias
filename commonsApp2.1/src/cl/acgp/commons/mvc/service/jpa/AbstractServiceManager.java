@@ -118,6 +118,10 @@ public abstract class AbstractServiceManager<T> {
 
         return entity;
     }
+    
+    public T update(T entity) {     
+    	return this.jpaController.update(entity);  
+    }
 
     protected Class<?> getIdFieldType() {
         Class<?> idField = null;
