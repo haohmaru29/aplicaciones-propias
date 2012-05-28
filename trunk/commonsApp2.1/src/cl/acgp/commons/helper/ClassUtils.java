@@ -84,7 +84,7 @@ public final class ClassUtils {
     public static Object parseData(Object value, Class<?> field) throws ParseException {
         Object parsedValue = null;
         if (field.equals(String.class) || field.equals(char.class)) {
-            parsedValue = value;
+            parsedValue = ArrayUtils.extract(value );
 
         } else if (field.equals(Long.class) || field.equals(long.class)) {
             parsedValue = Long.parseLong(ArrayUtils.extract(value) );
@@ -100,8 +100,10 @@ public final class ClassUtils {
         } else if (field.equals(BigDecimal.class)) {
             parsedValue = BigDecimal.valueOf(Double.parseDouble(ArrayUtils.extract(value)) );
 
-        }else if ((field.equals(Timestamp.class)) || (field.equals(Date.class))) {
+        }else if ((field.equals(Date.class))) {
         	parsedValue = DateUtils.stringToDate(ArrayUtils.extract(value));
+        }else if((field.equals(Timestamp.class)) ) {
+        	parsedValue = DateUtils.stringToTimeStamp(ArrayUtils.extract(value));
         } else {
             AbstractServiceManager<?> serviceManager =
                     ServiceManager.factory(field.getSimpleName().concat("Manager"));
