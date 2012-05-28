@@ -97,7 +97,7 @@ public abstract class AbstractJpaController<T> {
             	try {
             		em.persist(entity);
             	} catch (Exception e) {
-	        		this.jpaConnection.log("Entity exist [Updating]", Level.ERROR, e);
+	        		//this.jpaConnection.log("Entity exist [Updating]", Level.ERROR, e);
 	        		if (em.isOpen()) em.close();
 	        		em = this.jpaConnection.getEntityManager();
 	        		if (!em.getTransaction().isActive()) em.getTransaction().begin();

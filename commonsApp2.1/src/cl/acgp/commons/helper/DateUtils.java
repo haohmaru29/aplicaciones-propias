@@ -1,11 +1,12 @@
 package cl.acgp.commons.helper;
 
 import java.util.Date;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import jxl.common.Logger;
+import org.apache.log4j.Logger;
 
 public final class DateUtils {
 
@@ -24,6 +25,19 @@ public final class DateUtils {
 		try {
 			SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy");
 			d = sd.parse(date);
+			logger.info("Fecha parseada: " + d);
+		} catch (ParseException e) {
+			logger.error("[Intranet]", e);
+		}
+		return d;
+   }
+	
+	public static Timestamp stringToTimeStamp(String date) {
+		Timestamp d = null;
+		try {
+			SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy");
+			Date dat = sd.parse(date);
+			d = new Timestamp(dat.getTime());
 			logger.info("Fecha parseada: " + d);
 		} catch (ParseException e) {
 			logger.error("[Intranet]", e);
