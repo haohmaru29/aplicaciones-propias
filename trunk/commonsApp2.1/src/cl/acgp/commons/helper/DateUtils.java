@@ -20,6 +20,14 @@ public final class DateUtils {
 		return sd.format(date);
 	}
 	
+	public static String DateToString(Date date, String pattern) {
+		String d = null;
+		SimpleDateFormat sd = new SimpleDateFormat(pattern);
+		d = sd.format(date);
+		logger.info("Fecha parseada: " + d);
+		return sd.format(date);
+	}
+	
 	public static Date stringToDate(String date) {
 		Date d = null;
 		try {
